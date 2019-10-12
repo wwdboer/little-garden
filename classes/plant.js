@@ -28,6 +28,20 @@ export default class Plant {
         this.path.add(new Point(this.path.lastSegment.point.add([0, -this.growDistance])));
     }
 
+    color() {
+        const tween = this.path.tweenTo(
+            {
+                strokeColor: 'red'
+            },
+            {
+                duration: 2000,
+                start: false
+            }
+        );
+
+        tween.start();
+    }
+
     loop(timeStamp) {
         if (!this.startTime) {
             this.startTime = timeStamp;
@@ -40,6 +54,10 @@ export default class Plant {
 
         // Stop loop
         if(elapsed < 2000) {
+            const sinus = Math.sin(elapsed * 3);
+
+            this.path.lastSegment.point.y = sinus * 30 + 200;
+
             window.requestAnimationFrame((t) => this.loop(t));
         }
     }

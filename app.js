@@ -12,7 +12,8 @@ window.onload = function() {
     test.sprout();
 
     window.setTimeout(() => {
-       test.grow();
+    //    test.grow();
+        test.color();
     }, 3000);
 
     // Draw the view now:
