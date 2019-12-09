@@ -1,8 +1,8 @@
 import paper, { view, Path, Group, Point } from 'paper';
 
 export default class Plant {
+    moisture = 50;
     sproutDistance = 5;
-    growDistance = 10;
     startTime = null;
     startPoint = null;
     path = null;
@@ -17,6 +17,10 @@ export default class Plant {
         this.path.strokeWidth = 5;
 
         window.requestAnimationFrame((t) => this.loop(t));
+    }
+
+    get growDistance() {
+        return ((this.moisture * 10) - 20) / 80;
     }
 
     sprout() {
